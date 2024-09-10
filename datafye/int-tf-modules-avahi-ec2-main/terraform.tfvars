@@ -1,7 +1,7 @@
 instance_name = "datafye-instance"
 instance_type = "t2.micro"
 ami_id = "ami"
-subnet_id = "subnet"
+subnet_id = "subne"
 keypair_name = "145023125708"
 sgid = "sg-"
 availability_zone = "us-east-1a"
