@@ -39,11 +39,11 @@ phases:
       - echo "File identified ${TFVARS_FILE}"
       # If a .tfvars file is found, extract the parent directory and set MODULE_PATH
       - if [ -n "$TFVARS_FILE" ]; then 
-            export MODULE_PATH=$(dirname "$TFVARS_FILE")
-            echo "Changes detected in .tfvars file. Setting MODULE_PATH to $MODULE_PATH"
+            export MODULE_PATH=$(dirname "$TFVARS_FILE"); 
+            echo "Changes detected in .tfvars file. Setting MODULE_PATH to $MODULE_PATH";
         else 
-            echo "No changes detected in .tfvars files. Exiting."
-            exit 1
+            echo "No changes detected in .tfvars files. Exiting."; 
+            exit 1; 
         fi
       
       - ls -al
