@@ -1,4 +1,4 @@
-name = "datafye2"
+name = "datafye3"
 cidr = "192.169.0.0/21"
 azs = ["us-east-1a", "us-east-1b"]
 vpc_tags = {"CreatedBy" = "Prasad2"}
