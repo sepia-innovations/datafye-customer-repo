@@ -52,11 +52,11 @@ phases:
       - cd ${MODULE_PATH}
       - export TFVARS_DIR=$(basename $(dirname "$TFVARS_FILE"))
       - if echo "$TFVARS_DIR" | grep -q "ec2"; then
-            export TFVARS_SHORT_DIR="ec2"
+            export TFVARS_SHORT_DIR="ec2";
         elif echo "$TFVARS_DIR" | grep -q "vpc"; then
-            export TFVARS_SHORT_DIR="vpc"
+            export TFVARS_SHORT_DIR="vpc";
         else
-            export TFVARS_SHORT_DIR="$TFVARS_DIR"
+            export TFVARS_SHORT_DIR="$TFVARS_DIR";
         fi
       
       - export MODIFIED_S3_STATE_FILE="${CUSTOMER_ACCOUNT_ID}/${TFVARS_SHORT_DIR}/${S3_STATE_FILE}"
