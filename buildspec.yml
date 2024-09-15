@@ -22,9 +22,9 @@ phases:
       - echo "ACCOUNT_ID ${CUSTOMER_ACCOUNT_ID}, ROLE ${CUSTOMER_ACCOUNT_ROLE_NAME}, REPO ${GITHUB_CUSTOMER_REPO}, COMMIT_ID ${CODEBUILD_RESOLVED_SOURCE_VERSION}, DYNAMODB ${DYNAMODB_TABLE_NAME}, S3_BUCKET ${S3_BUCKET_NAME}, STATE_FILE ${S3_STATE_FILE}"
       - echo "Retrieving GitHub secret from Secrets Manager..."
       - export SECRET_VALUE=$(aws secretsmanager get-secret-value --secret-id ${GITHUB_SECRET_NAME} --query SecretString --output text)
-      - export GITHUB_TOKEN=$(echo $SECRET_VALUE | jq -r '.githubToken')
-      - export GITHUB_ORG=$(echo $SECRET_VALUE | jq -r '.githubOrg')
-      - export GITHUB_CUSTOMER_REPO=$(echo $SECRET_VALUE | jq -r '.githubCustomerRepo')
+      - export GITHUB_TOKEN=$(echo $SECRET_VALUE | jq -r '.github_token')
+      - export GITHUB_ORG=$(echo $SECRET_VALUE | jq -r '.github_org')
+      - export GITHUB_CUSTOMER_REPO=$(echo $SECRET_VALUE | jq -r '.customer_github_repo')
       
       - echo "Cloning the Git repository..."
       - git clone "https://${GITHUB_TOKEN}@github.com/${GITHUB_ORG}/${GITHUB_CUSTOMER_REPO}.git" || { echo "Git clone failed"; exit 1; }
