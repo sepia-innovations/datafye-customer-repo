@@ -1,43 +1,39 @@
 version: 0.2
 
+env:
+  variables:
+    TERRAFORM_VERSION: 1.9.5
+
 phases:
   install:
     commands:
-      - echo Installing Terraform...
-      - wget https://releases.hashicorp.com/terraform/1.9.5/terraform_1.9.5_linux_amd64.zip
-      - unzip terraform_1.9.5_linux_amd64.zip
+      - echo "Installing Terraform, jq, and Git..."
+      - wget https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+      - wget https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_SHA256SUMS
+      - sha256sum -c terraform_${TERRAFORM_VERSION}_SHA256SUMS --ignore-missing || { echo "Terraform checksum failed"; exit 1; }
+      - unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip
       - mv terraform /usr/local/bin/
       - terraform --version
-      - echo Installing jq...
-      - apt-get update && apt-get install -y jq
-      - echo Installing Git...
-      - apt-get install -y git
-
+      - apt-get update --no-cache && apt-get install -y jq git
+      
   pre_build:
     commands:
-      - echo "Removing content in current directory..."
       - rm -rf *
-      - echo "Retrieving and parsing GitHub secret from Secrets Manager..."
+      - echo "ACCOUNT_ID ${CUSTOMER_ACCOUNT_ID}, ROLE ${CUSTOMER_ACCOUNT_ROLE_NAME}, REPO ${GITHUB_CUSTOMER_REPO}, COMMIT_ID ${CODEBUILD_RESOLVED_SOURCE_VERSION}, DYNAMODB ${DYNAMODB_TABLE_NAME}, S3_BUCKET ${S3_BUCKET_NAME}, STATE_FILE ${S3_STATE_FILE}"
+      - echo "Retrieving GitHub secret from Secrets Manager..."
       - export SECRET_VALUE=$(aws secretsmanager get-secret-value --secret-id ${GITHUB_SECRET_NAME} --query SecretString --output text)
       - export GITHUB_TOKEN=$(echo $SECRET_VALUE | jq -r '.githubToken')
       - export GITHUB_ORG=$(echo $SECRET_VALUE | jq -r '.githubOrg')
       - export GITHUB_CUSTOMER_REPO=$(echo $SECRET_VALUE | jq -r '.githubCustomerRepo')
+      
       - echo "Cloning the Git repository..."
-      - git clone "https://${GITHUB_TOKEN}@github.com/${GITHUB_ORG}/${GITHUB_CUSTOMER_REPO}.git"
+      - git clone "https://${GITHUB_TOKEN}@github.com/${GITHUB_ORG}/${GITHUB_CUSTOMER_REPO}.git" || { echo "Git clone failed"; exit 1; }
       - cd ${GITHUB_CUSTOMER_REPO}
-      - echo "CUSTOMER_ACCOUNT_ID is ${CUSTOMER_ACCOUNT_ID}"
-      - echo "CUSTOMER_ACCOUNT_ROLE_NAME is ${CUSTOMER_ACCOUNT_ROLE_NAME}"
-      - echo "S3_BUCKET_NAME is ${S3_BUCKET_NAME}"
-      - echo "DYNAMODB_TABLE_NAME is ${DYNAMODB_TABLE_NAME}"
-      - echo "S3_STATE_FILE is ${S3_STATE_FILE}"
-      - echo "Checking out the commit ID ${CODEBUILD_RESOLVED_SOURCE_VERSION}"
       - git checkout ${CODEBUILD_RESOLVED_SOURCE_VERSION}
 
-      # Check for changes in files ending with .tfvars
       - echo "Checking for changes in .tfvars files..."
       - export TFVARS_FILE=$(git diff-tree --no-commit-id --name-only -r ${CODEBUILD_RESOLVED_SOURCE_VERSION} | grep '\.tfvars$' || true)
       - echo "File identified ${TFVARS_FILE}"
-      # If a .tfvars file is found, extract the parent directory and set MODULE_PATH
       - if [ -n "$TFVARS_FILE" ]; then 
             export MODULE_PATH=$(dirname "$TFVARS_FILE"); 
             echo "Changes detected in .tfvars file. Setting MODULE_PATH to $MODULE_PATH";
@@ -45,14 +41,11 @@ phases:
             echo "No changes detected in .tfvars files. Exiting."; 
             exit 1; 
         fi
-      
-      - ls -al
-      
+         
       - echo "Changing directory to ${MODULE_PATH}..."
-      - cd ${MODULE_PATH}
-      - export TFVARS_DIR=$(basename $(dirname "$TFVARS_FILE"))     
-      - export S3_STATE_FILE_PATH="${CUSTOMER_ACCOUNT_ID}/${TFVARS_SHORT_DIR}/${S3_STATE_FILE}"
-      - echo "Modified S3_STATE_FILE is $S3_STATE_FILE_PATH"
+      - cd ${MODULE_PATH}   
+      - export S3_STATE_FILE_PATH="${CUSTOMER_ACCOUNT_ID}/${S3_STATE_FILE}"
+      - echo "S3_STATE_FILE_PATH is $S3_STATE_FILE_PATH"
       
       - echo "Updating backend configuration..."
       - |
@@ -66,8 +59,6 @@ phases:
           }
         }
         EOF
-      - echo "Contents of backend.tf:"
-      - cat backend.tf
       - echo "Updating provider configuration..."
       - |
         cat > provider.tf <<EOF
@@ -76,24 +67,22 @@ phases:
 
           assume_role {
             role_arn     = "arn:aws:iam::$CUSTOMER_ACCOUNT_ID:role/$CUSTOMER_ACCOUNT_ROLE_NAME"
-            session_name = "terraform-session-account2"
+            session_name = "terraform-session-account"
           }
         }
         EOF
-      - echo "Contents of provider.tf:"
-      - cat provider.tf
       - echo "Initializing Terraform..."
-      - terraform init
+      - terraform init || { echo "Terraform init failed"; exit 1; }
 
   build:
     commands:
       - echo "Planning Terraform deployment..."
-      - terraform plan -out=tfplan
+      - terraform plan -out=tfplan || { echo "Terraform plan failed"; exit 1; }
 
   post_build:
     commands:
       - echo "Applying Terraform deployment..."
-      - terraform apply -auto-approve tfplan
+      - terraform apply -auto-approve tfplan || { echo "Terraform apply failed"; exit 1; }
       - echo "Terraform apply completed on `date`"
 
 artifacts:
