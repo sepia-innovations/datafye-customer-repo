@@ -1,0 +1,28 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo Installing Terraform...
+      - wget https://releases.hashicorp.com/terraform/1.9.5/terraform_1.9.5_linux_amd64.zip
+      - unzip terraform_1.9.5_linux_amd64.zip
+      - mv terraform /usr/local/bin/
+      - terraform --version
+
+  pre_build:
+    commands:
+      - echo "Pre-build phase. No actions to be performed."
+
+  build:
+    commands:
+      - echo "Build phase. No actions to be performed."
+
+  post_build:
+    commands:
+      - echo "Post-build phase. No actions to be performed."
+
+artifacts:
+  files:
+    - '**/*'
+  discard-paths: yes
+  base-directory: .
