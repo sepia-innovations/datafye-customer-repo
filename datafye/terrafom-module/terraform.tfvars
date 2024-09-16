@@ -11,16 +11,16 @@ vpc_custom_name = "datafye-vpc"
 number_of_azs = 1
 
 # Nvx_rumi_jump settings
-nvx_rumi_jump           = true
-nvx_rumi_jump_instance_type    = "t3.medium"
-nvx_rumi_jump_custom_dns_name  = ""
-nvx_rumi_jump_subnet_id        = ""
-nvx_rumi_jump_volume_size      = 50  # in GBs
+nvx_rumi_jump = true
+nvx_rumi_jump_instance_type = "t3.large"
+nvx_rumi_jump_custom_dns_name = "nvx-rumi-jump.example.com"
+nvx_rumi_jump_subnet_id = "subnet-12345678"
+nvx_rumi_jump_volume_size = 100  # in GBs
 nvx_rumi_jump_custom_tags      = "{}"
 
 # Nvx_rumi_admin settings
-nvx_rumi_admin           = false
-nvx_rumi_admin_instance_type    = "t3.large"
+nvx_rumi_admin = false
+nvx_rumi_admin_instance_type = "t3.small"
 nvx_rumi_admin_custom_dns_name  = "nvx-admin.example.com"
 nvx_rumi_admin_subnet_id        = "subnet-yyyyyy"
 nvx_rumi_admin_volume_size      = 60  # in GBs
@@ -30,10 +30,10 @@ nvx_rumi_admin_custom_tags      = {
 }
 
 # Nvx_rumi_monitor settings
-nvx_rumi_monitor           = false
-nvx_rumi_monitor_instance_type    = "t3.small"
-nvx_rumi_monitor_custom_dns_name  = "nvx-monitor.example.com"
-nvx_rumi_monitor_subnet_id        = "subnet-zzzzzz"
+nvx_rumi_monitor = true
+nvx_rumi_monitor_instance_type = "t3.large"
+nvx_rumi_monitor_custom_dns_name = "nvx-rumi-jump.example.com"
+nvx_rumi_monitor_subnet_id = "subnet-12345678"
 nvx_rumi_monitor_volume_size      = 40  # in GBs
 nvx_rumi_monitor_custom_tags      = {
   environment = "dev"
@@ -41,18 +41,18 @@ nvx_rumi_monitor_custom_tags      = {
 }
 
 # Nvx_rumi_worker settings
-nvx_rumi_worker           = false
-nvx_rumi_worker_instance_type    = "t3.medium"
-nvx_rumi_worker_custom_dns_name  = "nvx-worker.example.com"
-nvx_rumi_worker_subnet_id        = "subnet-aaaaaa"
-nvx_rumi_worker_volume_size      = 100  # in GBs
-nvx_rumi_worker_custom_tags      = {
-  environment = "dev"
-  project     = "NvxRumiWorker"
+nvx_rumi_worker = true
+nvx_rumi_worker_instance_type = "t3.large"
+nvx_rumi_worker_custom_dns_name = "nvx-rumi-jump.example.com"
+nvx_rumi_worker_subnet_id = "subnet-12345678"
+nvx_rumi_worker_volume_size = 200  # in GBs
+nvx_rumi_worker_custom_tags = {
+	environment = "prod"
+	project = "NvxRumiJump2"
 }
 
 # Solace settings
-solace           = false
+solace = false
 solace_instance_type    = "t3.large"
 solace_custom_dns_name  = "solace.example.com"
 solace_subnet_id        = "subnet-bbbbbb"
