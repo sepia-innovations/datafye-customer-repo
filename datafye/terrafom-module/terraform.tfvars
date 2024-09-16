@@ -6,9 +6,9 @@ aws_region = "us-east-1"
 iam_role = "arn:aws:iam::640168428612:role/SharedServicesCodePipelineCrossAccountRole"
 
 #Create/Destroy VPC
-create_vpc              = false
-vpc_custom_name         = ""
-number_of_azs           = 1
+create_vpc = true
+vpc_custom_name = "datafye-vpc"
+number_of_azs = 1
 
 # Nvx_rumi_jump settings
 nvx_rumi_jump           = true
