@@ -7,7 +7,7 @@ iam_role = "arn:aws:iam::640168428612:role/SharedServicesCodePipelineCrossAccoun
 
 #Create/Destroy VPC
 create_vpc = true
-vpc_custom_name = "datafye-vpc"
+vpc_custom_name = "datafye-vpc2"
 number_of_azs = 1
 
 # Nvx_rumi_jump settings
