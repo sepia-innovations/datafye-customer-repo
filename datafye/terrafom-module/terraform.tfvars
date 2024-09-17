@@ -15,7 +15,7 @@ nvx_rumi_jump = true
 nvx_rumi_jump_instance_type = "t3.large"
 nvx_rumi_jump_custom_dns_name = "nvx-rumi-jump.example.com"
 nvx_rumi_jump_subnet_id = "subnet-12345678"
-nvx_rumi_jump_volume_size = 100  # in GBs
+nvx_rumi_jump_volume_size = 10  # in GBs
 nvx_rumi_jump_custom_tags      = "{}"
 
 # Nvx_rumi_admin settings
