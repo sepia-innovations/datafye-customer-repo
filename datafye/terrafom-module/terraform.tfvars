@@ -64,6 +64,6 @@ solace_custom_tags      = {
 
 
 #Attach historical disk
-attach_historical_disk  = false
-historical_disk_mount_point  = "/mnt/"
-historical_disk_attach_ec2  = ["instance id"]
+attach_historical_disk = true
+historical_disk_mount_point = "/mnt/"
+historical_disk_attach_ec2 = ["instance id", "i-08ab01378475e2cbb"]
