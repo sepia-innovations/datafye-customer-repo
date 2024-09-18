@@ -10,7 +10,7 @@ permissions:
   contents: read    # This is required for actions/checkout
 
 jobs:
-  terraform_apply:
+  terraform_plan:
     runs-on: ubuntu-latest
     env:
       IAM_ROLE: ""
