@@ -3,7 +3,7 @@ name: Terraform Plan
 on:
   push:
     branches:
-      - clients/**
+      - 'clients/**'
 
 permissions:
   id-token: write   # This is required for requesting the JWT
