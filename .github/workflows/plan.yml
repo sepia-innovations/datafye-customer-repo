@@ -1,4 +1,4 @@
-name: Terraform Plan2
+name: Terraform Plan3
 
 on:
   push:
@@ -10,7 +10,7 @@ permissions:
   contents: read    # This is required for actions/checkout
 
 jobs:
-  terraform_plan2:
+  terraform_plan3:
     runs-on: ubuntu-latest
     env:
       IAM_ROLE: ""
