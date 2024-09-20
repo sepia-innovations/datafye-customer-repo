@@ -1,4 +1,4 @@
-name: Terraform Apply2
+name: Terraform Apply3
 
 on:
   push:
@@ -10,7 +10,7 @@ permissions:
   contents: read    # This is required for actions/checkout
 
 jobs:
-  terraform_apply2:
+  terraform_apply3:
     runs-on: ubuntu-latest
     env:
       IAM_ROLE: ""
