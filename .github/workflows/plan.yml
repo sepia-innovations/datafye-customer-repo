@@ -13,6 +13,7 @@ jobs:
   terraform_plan3:
     runs-on: ubuntu-latest
     env:
+      EXECUTION_ID: ""
       IAM_ROLE: ""
       TF_BE_KEY: ""
       TF_BE_WORKSPACE: ""
