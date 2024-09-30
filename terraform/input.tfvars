@@ -2,65 +2,51 @@
 
 # Create account
 public_ssh_key          = ""
-aws_region              = "us-east-1"
-iam_role                = ""
 
 #Create/Destroy VPC
 create_vpc              = false
 vpc_custom_name         = ""
-number_of_azs           = 1
+number_of_azs           = 3
 
 # Nvx_rumi_jump settings
-nvx_rumi_jump           = true
-nvx_rumi_jump_instance_type    = "t3.medium"
+nvx_rumi_jump           = false
+nvx_rumi_jump_instance_type    = "t1.micro"
 nvx_rumi_jump_custom_dns_name  = ""
 nvx_rumi_jump_subnet_id        = ""
-nvx_rumi_jump_volume_size      = 50  # in GBs
-nvx_rumi_jump_custom_tags      = "{}"
+nvx_rumi_jump_volume_size      = 40
+nvx_rumi_jump_custom_tags      = {}
 
 # Nvx_rumi_admin settings
 nvx_rumi_admin           = false
-nvx_rumi_admin_instance_type    = "t3.large"
-nvx_rumi_admin_custom_dns_name  = "nvx-admin.example.com"
-nvx_rumi_admin_subnet_id        = "subnet-yyyyyy"
-nvx_rumi_admin_volume_size      = 60  # in GBs
-nvx_rumi_admin_custom_tags      = {
-  environment = "dev"
-  project     = "NvxRumiAdmin"
-}
+nvx_rumi_admin_instance_type    = "t1.micro"
+nvx_rumi_admin_custom_dns_name  = ""
+nvx_rumi_admin_subnet_id        = ""
+nvx_rumi_admin_volume_size      = 40
+nvx_rumi_admin_custom_tags      = {}
 
 # Nvx_rumi_monitor settings
 nvx_rumi_monitor           = false
-nvx_rumi_monitor_instance_type    = "t3.small"
-nvx_rumi_monitor_custom_dns_name  = "nvx-monitor.example.com"
-nvx_rumi_monitor_subnet_id        = "subnet-zzzzzz"
-nvx_rumi_monitor_volume_size      = 40  # in GBs
-nvx_rumi_monitor_custom_tags      = {
-  environment = "dev"
-  project     = "NvxRumiMonitor"
-}
+nvx_rumi_monitor_instance_type    = "t1.micro"
+nvx_rumi_monitor_custom_dns_name  = ""
+nvx_rumi_monitor_subnet_id        = ""
+nvx_rumi_monitor_volume_size      = 40
+nvx_rumi_monitor_custom_tags      = {}
 
 # Nvx_rumi_worker settings
 nvx_rumi_worker           = false
-nvx_rumi_worker_instance_type    = "t3.medium"
-nvx_rumi_worker_custom_dns_name  = "nvx-worker.example.com"
-nvx_rumi_worker_subnet_id        = "subnet-aaaaaa"
-nvx_rumi_worker_volume_size      = 100  # in GBs
-nvx_rumi_worker_custom_tags      = {
-  environment = "dev"
-  project     = "NvxRumiWorker"
-}
+nvx_rumi_worker_instance_type    = "t1.micro"
+nvx_rumi_worker_custom_dns_name  = ""
+nvx_rumi_worker_subnet_id        = ""
+nvx_rumi_worker_volume_size      = 40
+nvx_rumi_worker_custom_tags      = {}
 
 # Solace settings
 solace           = false
-solace_instance_type    = "t3.large"
-solace_custom_dns_name  = "solace.example.com"
-solace_subnet_id        = "subnet-bbbbbb"
-solace_volume_size      = 120  # in GBs
-solace_custom_tags      = {
-  environment = "prod"
-  project     = "SolaceProject"
-}
+solace_instance_type    = "t1.micro"
+solace_custom_dns_name  = ""
+solace_subnet_id        = ""
+solace_volume_size      = 40
+solace_custom_tags      = {}
 
 
 #Attach historical disk
