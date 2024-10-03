@@ -1,7 +1,7 @@
 # terraform.tfvars
 
 # Create account
-public_ssh_key          = ""
+public_ssh_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC1ZpeH9yeaVOu4timb7PXN3C3OoEKu7tXjeJGTYP45XzwkvK7mSFAkb6ZBF4aIXxAByCvFO9PbvwQEFon8KWay4HdHM9mcK7If7VdjHvdMi6RqZFOen6Tzm1samNG5O3XHWFlBvZRorswUADhbOrng0ecvZOclyKVFHY2PE8rxAi4S0oZcCnM1TsiDD/5oi+lsbimGHROxDYHCXYyoq7xLEz7rb9DSZdENAI6CLLR6wtQc+TKMH2OGY53MiS4mnRdsbBBLGBKCfG9vd+cEYgA87PMg0Y/mxzCaHA1JqdyRt9xUR1TrktJea5EDfg4qYjLTZEKMxmrwisOZtf2Wod/N root@ip-172-31-13-55.ec2.internal"
 
 #Create/Destroy VPC
 create_vpc              = false
