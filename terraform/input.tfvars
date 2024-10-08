@@ -58,8 +58,10 @@ solace_instance_type = "t3.medium"
 solace_custom_dns_name  = ""
 solace_subnet_id        = ""
 solace_volume_size      = 40
-solace_custom_tags = {}
-
+solace_custom_tags = {
+	exampleTag = "devTagWorker"
+	project = "exampleProject"
+}
 
 #Attach historical disk
 attach_historical_disk = true
