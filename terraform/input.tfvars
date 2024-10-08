@@ -48,6 +48,13 @@ solace_subnet_id        = ""
 solace_volume_size      = 40
 solace_custom_tags      = {}
 
+# Solace settings
+solace2           = false
+solace2_instance_type    = "t1.micro"
+solace2_custom_dns_name  = ""
+solace2_subnet_id        = ""
+solace2_volume_size      = 40
+solace2_custom_tags      = {}
 
 #Attach historical disk
 attach_historical_disk  = false
