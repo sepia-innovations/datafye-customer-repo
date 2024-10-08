@@ -1,7 +1,7 @@
 # terraform.tfvars
 
 # Create account
-public_ssh_key          = ""
+public_ssh_key          = "This is my ssh key"
 
 #Create/Destroy VPC
 create_vpc              = false
