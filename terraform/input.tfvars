@@ -8,14 +8,6 @@ create_vpc              = false
 vpc_custom_name         = ""
 number_of_azs           = 3
 
-# Nvx_rumi_jump settings
-nvx_rumi_jump           = false
-nvx_rumi_jump_instance_type    = "t1.micro"
-nvx_rumi_jump_custom_dns_name  = ""
-nvx_rumi_jump_subnet_id        = ""
-nvx_rumi_jump_volume_size      = 40
-nvx_rumi_jump_custom_tags      = {}
-
 # Nvx_rumi_admin settings
 nvx_rumi_admin           = false
 nvx_rumi_admin_instance_type    = "t1.micro"
