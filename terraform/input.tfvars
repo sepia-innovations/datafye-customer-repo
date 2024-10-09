@@ -73,6 +73,14 @@ solace2_custom_tags      = {
 	project = "exampleProject"
 }
 
+# Solace settings
+solace3           = false
+solace3_instance_type    = "t1.micro"
+solace3_custom_dns_name  = ""
+solace3_subnet_id        = ""
+solace3_volume_size      = 40
+solace3_custom_tags      = {}
+
 #Attach historical disk
 attach_historical_disk = true
 historical_disk_mount_point = "/mnt/"
