@@ -5,15 +5,15 @@ public_ssh_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC1ZpeH9yeaVOu4timb7PXN3C
 
 #Create/Destroy VPC
 create_vpc = true
-vpc_custom_name = ""
+vpc_custom_name = "datafye"
 number_of_azs = 3
 
 # Nvx_rumi_jump settings
 nvx_rumi_jump = true
-nvx_rumi_jump_instance_type = "t3.medium"
+nvx_rumi_jump_instance_type = "t2.medium"
 nvx_rumi_jump_custom_dns_name  = ""
 nvx_rumi_jump_subnet_id        = ""
-nvx_rumi_jump_volume_size      = 40
+nvx_rumi_jump_volume_size      = 50
 nvx_rumi_jump_custom_tags = {
 	exampleTag = "devTagServer"
 	project = "exampleProject"
@@ -21,10 +21,10 @@ nvx_rumi_jump_custom_tags = {
 
 # Nvx_rumi_admin settings
 nvx_rumi_admin = true
-nvx_rumi_admin_instance_type = "t3.medium"
+nvx_rumi_admin_instance_type = "t2.medium"
 nvx_rumi_admin_custom_dns_name  = ""
 nvx_rumi_admin_subnet_id        = ""
-nvx_rumi_admin_volume_size      = 40
+nvx_rumi_admin_volume_size      = 50
 nvx_rumi_admin_custom_tags = {
 	exampleTag = "devTagAdmin"
 	project = "exampleProject"
@@ -32,10 +32,10 @@ nvx_rumi_admin_custom_tags = {
 
 # Nvx_rumi_monitor settings
 nvx_rumi_monitor = true
-nvx_rumi_monitor_instance_type = "t3.medium"
+nvx_rumi_monitor_instance_type = "t2.medium"
 nvx_rumi_monitor_custom_dns_name  = ""
 nvx_rumi_monitor_subnet_id        = ""
-nvx_rumi_monitor_volume_size      = 40
+nvx_rumi_monitor_volume_size      = 50
 nvx_rumi_monitor_custom_tags = {
 	exampleTag = "devTagMonitor"
 	project = "exampleProject"
@@ -43,10 +43,10 @@ nvx_rumi_monitor_custom_tags = {
 
 # Nvx_rumi_worker settings
 nvx_rumi_worker = true
-nvx_rumi_worker_instance_type = "t3.medium"
+nvx_rumi_worker_instance_type = "t2.medium"
 nvx_rumi_worker_custom_dns_name  = ""
 nvx_rumi_worker_subnet_id        = ""
-nvx_rumi_worker_volume_size      = 40
+nvx_rumi_worker_volume_size      = 50
 nvx_rumi_worker_custom_tags = {
 	exampleTag = "devTagWorker"
 	project = "exampleProject"
@@ -54,21 +54,24 @@ nvx_rumi_worker_custom_tags = {
 
 # Solace settings
 solace = false
-solace_instance_type = "t3.medium"
+solace_instance_type = "t2.medium"
 solace_custom_dns_name  = ""
 solace_subnet_id        = ""
-solace_volume_size      = 40
+solace_volume_size      = 50
 solace_custom_tags = {
 	exampleTag = "devTagWorker"
 	project = "exampleProject"
 }
 # Solace settings
 solace2           = false
-solace2_instance_type    = "t1.micro"
+solace2_instance_type    = "t2.micro"
 solace2_custom_dns_name  = ""
 solace2_subnet_id        = ""
-solace2_volume_size      = 40
-solace2_custom_tags      = {}
+solace2_volume_size      = 50
+solace2_custom_tags      = {
+	exampleTag = "devTagWorker"
+	project = "exampleProject"
+}
 
 #Attach historical disk
 attach_historical_disk = true
